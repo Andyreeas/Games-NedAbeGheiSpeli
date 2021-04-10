@@ -5,12 +5,91 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.90.1 commit date:2020-09-23, commit time:06:43, hash:3e85bb34d0d7</authoring_tool>
     </contributor>
-    <created>2021-04-10T12:39:46</created>
-    <modified>2021-04-10T12:39:46</modified>
+    <created>2021-04-10T18:01:22</created>
+    <modified>2021-04-10T18:01:22</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
-  <library_images/>
+  <library_lights>
+    <light id="Sun-light" name="Sun">
+      <technique_common>
+        <directional>
+          <color sid="color">1 1 1</color>
+        </directional>
+      </technique_common>
+      <extra>
+        <technique profile="blender">
+          <type sid="type" type="int">1</type>
+          <flag sid="flag" type="int">0</flag>
+          <mode sid="mode" type="int">1</mode>
+          <gamma sid="blender_gamma" type="float">1</gamma>
+          <red sid="red" type="float">1</red>
+          <green sid="green" type="float">1</green>
+          <blue sid="blue" type="float">1</blue>
+          <shadow_r sid="blender_shadow_r" type="float">0</shadow_r>
+          <shadow_g sid="blender_shadow_g" type="float">0</shadow_g>
+          <shadow_b sid="blender_shadow_b" type="float">0</shadow_b>
+          <energy sid="blender_energy" type="float">1</energy>
+          <dist sid="blender_dist" type="float">12.5</dist>
+          <spotsize sid="spotsize" type="float">45</spotsize>
+          <spotblend sid="spotblend" type="float">0.15</spotblend>
+          <att1 sid="att1" type="float">0</att1>
+          <att2 sid="att2" type="float">1</att2>
+          <falloff_type sid="falloff_type" type="int">2</falloff_type>
+          <clipsta sid="clipsta" type="float">0.04999995</clipsta>
+          <clipend sid="clipend" type="float">40</clipend>
+          <bias sid="bias" type="float">1</bias>
+          <soft sid="soft" type="float">3</soft>
+          <bufsize sid="bufsize" type="int">512</bufsize>
+          <samp sid="samp" type="int">3</samp>
+          <buffers sid="buffers" type="int">1</buffers>
+          <area_shape sid="area_shape" type="int">0</area_shape>
+          <area_size sid="area_size" type="float">0.125</area_size>
+          <area_sizey sid="area_sizey" type="float">0.125</area_sizey>
+          <area_sizez sid="area_sizez" type="float">0.125</area_sizez>
+        </technique>
+      </extra>
+    </light>
+  </library_lights>
+  <library_effects>
+    <effect id="Material_001-effect">
+      <profile_COMMON>
+        <newparam sid="UVMap_Tile-01_png-surface">
+          <surface type="2D">
+            <init_from>UVMap_Tile-01_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="UVMap_Tile-01_png-sampler">
+          <sampler2D>
+            <source>UVMap_Tile-01_png-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <texture texture="UVMap_Tile-01_png-sampler" texcoord="Circle-mesh-map-0"/>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images>
+    <image id="UVMap_Tile-01_png" name="UVMap_Tile-01_png">
+      <init_from>UVMap_Tile-01.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="Material_001-material" name="Material.001">
+      <instance_effect url="#Material_001-effect"/>
+    </material>
+  </library_materials>
   <library_geometries>
     <geometry id="Circle-mesh" name="Circle">
       <mesh>
@@ -35,7 +114,7 @@
           </technique_common>
         </source>
         <source id="Circle-mesh-map-0">
-          <float_array id="Circle-mesh-map-0-array" count="120">0.2165063 0.5361883 0 0.8840472 0 0.6521413 0.2165063 0.5361883 0.2165064 1 0 0.8840472 0.4330126 0.6521412 0.2165064 1 0.2165063 0.5361883 0.4330127 0.884047 0.2165064 1 0.4330126 0.6521412 0.649519 0.5361883 0.8660253 0.6521412 0.8660253 0.8840471 0.649519 0.5361883 0.8660253 0.8840471 0.649519 1 0.4330127 0.6521412 0.649519 0.5361883 0.649519 1 0.4330127 0.8840471 0.4330127 0.6521412 0.649519 1 0.5087354 0.5361882 0.6285188 0 0.6285188 0.5361882 0.3837354 0.5361883 0.5087352 0 0.5087354 0.5361882 1.49012e-7 0.5361883 0.125 0 0.1250001 0.5361883 0.1250001 0.5361883 0.2587352 0 0.2587353 0.5361882 0.6285188 0.5361882 0.7535188 0 0.7535188 0.5361881 0.2587353 0.5361882 0.3837352 0 0.3837353 0.5361882 0.5087354 0.5361882 0.5087352 0 0.6285188 0 0.3837354 0.5361883 0.3837353 0 0.5087352 0 1.49012e-7 0.5361883 0 0 0.125 0 0.1250001 0.5361883 0.125 0 0.2587352 0 0.6285188 0.5361882 0.6285188 0 0.7535188 0 0.2587353 0.5361882 0.2587352 0 0.3837352 0</float_array>
+          <float_array id="Circle-mesh-map-0-array" count="120">0.005910158 0.6159424 0.7042467 0.6159425 0.3550783 0.8175349 0.005910158 0.6159424 0.7042466 0.2127578 0.7042467 0.6159425 0.005910038 0.2127578 0.7042466 0.2127578 0.005910158 0.6159424 0.3550782 0.01116544 0.7042466 0.2127578 0.005910038 0.2127578 0.7042465 0.2127575 0.7042465 0.6159425 0.3550782 0.8175349 0.7042465 0.2127575 0.3550782 0.8175349 0.005910158 0.6159425 0.3550784 0.01116532 0.7042465 0.2127575 0.005910158 0.6159425 0.005910038 0.2127578 0.3550784 0.01116532 0.005910158 0.6159425 0.710425 0.6653611 0.9956005 0.006007909 0.9956007 0.6653611 0.7104248 0.6653608 0.9956005 0.00600779 0.9956005 0.6653608 0.7104248 0.6653609 0.9956005 0.00600773 0.9956005 0.6653608 0.7104248 0.6653611 0.9956005 0.006007909 0.9956005 0.6653611 0.9956006 0.00600785 0.7104248 0.6653608 0.7104248 0.006007909 0.7104248 0.6653608 0.9956006 0.00600773 0.9956005 0.6653608 0.710425 0.6653611 0.710425 0.006007909 0.9956005 0.006007909 0.7104248 0.6653608 0.7104248 0.00600779 0.9956005 0.00600779 0.7104248 0.6653609 0.7104248 0.00600773 0.9956005 0.00600773 0.7104248 0.6653611 0.7104248 0.006007909 0.9956005 0.006007909 0.9956006 0.00600785 0.9956006 0.6653608 0.7104248 0.6653608 0.7104248 0.6653608 0.7104248 0.006007671 0.9956006 0.00600773</float_array>
           <technique_common>
             <accessor source="#Circle-mesh-map-0-array" count="60" stride="2">
               <param name="S" type="float"/>
@@ -46,7 +125,7 @@
         <vertices id="Circle-mesh-vertices">
           <input semantic="POSITION" source="#Circle-mesh-positions"/>
         </vertices>
-        <triangles count="20">
+        <triangles material="Material_001-material" count="20">
           <input semantic="VERTEX" source="#Circle-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#Circle-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#Circle-mesh-map-0" offset="2" set="0"/>
@@ -57,9 +136,21 @@
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
+      <node id="Sun" name="Sun" type="NODE">
+        <matrix sid="transform">1 0 0 -4.369703 0 1 0 -0.421995 0 0 1 2.632891 0 0 0 1</matrix>
+        <instance_light url="#Sun-light"/>
+      </node>
       <node id="hex" name="hex" type="NODE">
         <matrix sid="transform">-1 0 1.50996e-7 0 0 1 0 0 -1.50996e-7 0 -1 0 0 0 0 1</matrix>
-        <instance_geometry url="#Circle-mesh" name="hex"/>
+        <instance_geometry url="#Circle-mesh" name="hex">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material_001-material" target="#Material_001-material">
+                <bind_vertex_input semantic="Circle-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
       </node>
     </visual_scene>
   </library_visual_scenes>
