@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 
-public class KeyboardInput : MonoBehaviour
+public class KeyboardMouseInput : MonoBehaviour
 {
     public event Action OnMouseInputLeftDown = delegate { };
 
     private void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetMouseButtonDown(0))
         {
             OnMouseInputLeftDown();
         }

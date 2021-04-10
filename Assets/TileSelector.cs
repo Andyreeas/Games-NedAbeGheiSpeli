@@ -7,27 +7,27 @@ public class TileSelector : MonoBehaviour
     [SerializeField]
     Camera mainCamera;
 
-    private KeyboardInput keyboardInput;
+    private KeyboardMouseInput keyboardInput;
 
     //Debug var
     string tileInfo;
 
     private void Awake()
     {
-        keyboardInput = FindObjectOfType<KeyboardInput>();
+        keyboardInput = FindObjectOfType<KeyboardMouseInput>();
     }
 
     private void OnEnable()
     {
-        keyboardInput.OnMouseInputLeftDown += TileSelect;
+        keyboardInput.OnMouseInputLeftDown += TileDelete;
     }
 
     private void OnDisable()
     {
-        keyboardInput.OnMouseInputLeftDown += TileSelect;
+        keyboardInput.OnMouseInputLeftDown += TileDelete;
     }
 
-    void TileSelect()
+    void TileDelete()
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit rayHitInfo;
@@ -35,8 +35,8 @@ public class TileSelector : MonoBehaviour
         if (Physics.Raycast(ray, out rayHitInfo))
         {
             GameObject currentHex = rayHitInfo.collider.gameObject;
-
-            Debug.Log("Tile: " + currentHex.transform.position);
+            Destroy(currentHex);
+            Debug.Log("Tile to delete: " + currentHex.transform.position);
         }
     }
 }
