@@ -97,7 +97,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   q: 0
   r: 0
-  isWall: 0
+  life: 3
+  color3life: {r: 1, g: 1, b: 1, a: 0}
+  color2life: {r: 0.8867924, g: 0.6703314, b: 0.36391956, a: 0}
+  color1life: {r: 0.8113208, g: 0.23344605, b: 0.23344605, a: 0}
 --- !u!64 &110769532775823061
 MeshCollider:
   m_ObjectHideFlags: 0
