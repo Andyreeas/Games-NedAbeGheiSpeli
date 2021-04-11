@@ -68,18 +68,22 @@ public class MapHandler : MonoBehaviour {
             for (int q = 0; q < mapSize; q++) {
                 if (tileArray[r, q] != null) {
                     allTiles.Add(tileArray[r, q]);
-                    tileArray[r, q].Init(r, q, hexSizeScale);
+                    tileArray[r, q].Init(r, q);
+                    SetTilePosition(tileArray[r, q], r, q);
                 }
             }
         }
 
         // create wall
+        int wallLayer = 6;
+        Vector3 wallResize = new Vector3(1, 1, 2); // erhöht die wand
         // erstes und letztes Objekt in Row wird zur wand, r=0 und r=fieldSideSize komplett auch
         // linke seite
         for (int r = 0; r < mapSize; r++) {
             for (int q = 0; q < mapSize; q++) {
                 if (tileArray[r, q] != null) {
-                    tileArray[r, q].SetWall();
+                    tileArray[r, q].transform.localScale = wallResize; // erhöht die wand
+                    tileArray[r, q].gameObject.layer = wallLayer; // wall
                     break;
                 }
             }
@@ -88,7 +92,8 @@ public class MapHandler : MonoBehaviour {
         for (int r = 0; r < mapSize; r++) {
             for (int q = mapSize - 1; q > 0; q--) {
                 if (tileArray[r, q] != null) {
-                    tileArray[r, q].SetWall();
+                    tileArray[r, q].transform.localScale = wallResize; // erhöht die wand
+                    tileArray[r, q].gameObject.layer = wallLayer; // wall
                     break;
                 }
             }
@@ -96,12 +101,27 @@ public class MapHandler : MonoBehaviour {
         //oben und unten
         for (int q = 0; q < mapSize; q++) {
             if (tileArray[0, q] != null) {
-                tileArray[0, q].SetWall();
+                tileArray[0, q].transform.localScale = wallResize; // erhöht die wand
+                tileArray[0, q].gameObject.layer = wallLayer; // wall
             }
             if (tileArray[mapSize-1, q] != null) {
-                tileArray[mapSize - 1, q].SetWall();
+                tileArray[mapSize - 1, q].transform.localScale = wallResize; // erhöht die wand
+                tileArray[mapSize - 1, q].gameObject.layer = wallLayer; // wall
             }
         }
+    }
+
+    void SetTilePosition(HexTile tile, int _r, int _q) {
+        float width = Mathf.Sqrt(3) * hexSizeScale;
+        float height = 2 * hexSizeScale;
+        tile.transform.localScale = new Vector3(hexSizeScale * 0.95f, hexSizeScale * 0.95f, 1); // für etwas rand 95%
+
+        Vector3 posVector = new Vector3();
+        posVector.x = (_r * width / 2) + (_q * width);
+        posVector.y = 0;
+        posVector.z = _r * (height * 3 / 4);
+        tile.transform.position = posVector;
+        tile.transform.Rotate(-90.0f, 0.0f, 0.0f, Space.World);
     }
 
 }
