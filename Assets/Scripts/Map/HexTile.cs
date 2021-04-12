@@ -6,7 +6,6 @@ public class HexTile : MonoBehaviour {
 
     public int q;
     public int r;
-    int s;
 
     public int life = 3;
     Renderer rend;
@@ -22,7 +21,6 @@ public class HexTile : MonoBehaviour {
     public void Init(int _r, int _q) {
         q = _q;
         r = _r;
-        s = q - r;
 
         rend.material.color = color3life;
     }
