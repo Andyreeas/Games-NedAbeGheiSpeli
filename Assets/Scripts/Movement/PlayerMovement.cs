@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     CharacterController controller;
+    KeyboardMouseInput keyboardMouseInput;
 
     public float speed = 10f;
     public float jumpHeight = 5f;
@@ -19,6 +20,21 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
+    private void Awake()
+    {
+        keyboardMouseInput = FindObjectOfType<KeyboardMouseInput>();
+    }
+
+    private void OnEnable()
+    {
+        keyboardMouseInput.OnKeyboardInputSpace += Jump;    
+    }
+    
+    private void OnDisable()
+    {
+        keyboardMouseInput.OnKeyboardInputSpace -= Jump;   
+    }
+
     void Update()
     {
         float x = Input.GetAxis("Horizontal");
@@ -28,12 +44,6 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
-        //Jump
-
-        if (Input.GetButtonDown("Jump") && controller.isGrounded) {
-            velocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity); 
-        }
-
         //physics (gravity)
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
@@ -41,6 +51,17 @@ public class PlayerMovement : MonoBehaviour
         if (controller.isGrounded && velocity.y < 0) {
             velocity.y = -2;
         }
-        //RaycastHit(Vector3.down);
     }
+
+    void Jump()
+    {
+        /*
+        //Jump
+        if (Physics.Raycast(controller.transform.position, Vector3.down, float controller.))
+        {
+            velocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+        */
+    }
+
 }
