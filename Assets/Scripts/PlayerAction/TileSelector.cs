@@ -9,9 +9,7 @@ public class TileSelector : MonoBehaviour
     Camera mainCamera;
 
     private KeyboardMouseInput keyboardInput;
-
-    public event Action OnTileDelete = delegate { };
-
+    
     //Debug var
     string tileInfo;
 
@@ -37,13 +35,12 @@ public class TileSelector : MonoBehaviour
         
         if (Physics.Raycast(ray, out rayHitInfo))
         {
-            GameObject currentHex = rayHitInfo.collider.gameObject;
-            if (!(currentHex.layer == LayerMask.NameToLayer("Wall")))
+            HexTile currentHex = rayHitInfo.collider.GetComponent<HexTile>();
+            if (!(currentHex.gameObject.layer == LayerMask.NameToLayer("Wall")))
             {
-                OnTileDelete();
-                Debug.Log("OnTileDelte fire in the hole!");
+                currentHex.LooseLife();
             }
-            Debug.Log("Tile layer: "+ LayerMask.LayerToName(currentHex.layer));
+            Debug.Log("Tile layer: "+ LayerMask.LayerToName(currentHex.gameObject.layer));
             Debug.Log("Tile to delete: " + currentHex.transform.position);
         }
     }
