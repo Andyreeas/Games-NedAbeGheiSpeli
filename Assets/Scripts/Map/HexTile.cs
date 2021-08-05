@@ -6,6 +6,7 @@ public class HexTile : MonoBehaviour {
 
     public int q;
     public int r;
+    // test color //public bool bolN = True;
 
     public int life = 3;
     Renderer rend;
@@ -15,6 +16,7 @@ public class HexTile : MonoBehaviour {
     public Color color1life;
 
     private void Awake() {
+        //comment 
         rend = GetComponent<Renderer>();
     }
 
