@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        keyboardMouseInput = FindObjectOfType<KeyboardMouseInput>();
+        keyboardMouseInput = GetComponentInChildren<KeyboardMouseInput>();
     }
 
     private void OnEnable()

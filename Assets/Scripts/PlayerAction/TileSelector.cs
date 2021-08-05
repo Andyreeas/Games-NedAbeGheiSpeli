@@ -9,13 +9,13 @@ public class TileSelector : MonoBehaviour
     Camera mainCamera;
 
     private KeyboardMouseInput keyboardInput;
-    
+
     //Debug var
     string tileInfo;
 
     private void Awake()
     {
-        keyboardInput = FindObjectOfType<KeyboardMouseInput>();
+        keyboardInput = GetComponentInChildren<KeyboardMouseInput>();
     }
 
     private void OnEnable()
@@ -32,7 +32,7 @@ public class TileSelector : MonoBehaviour
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit rayHitInfo;
-        
+
         if (Physics.Raycast(ray, out rayHitInfo))
         {
             HexTile currentHex = rayHitInfo.collider.GetComponent<HexTile>();
@@ -40,7 +40,7 @@ public class TileSelector : MonoBehaviour
             {
                 currentHex.LooseLife();
             }
-            Debug.Log("Tile layer: "+ LayerMask.LayerToName(currentHex.gameObject.layer));
+            Debug.Log("Tile layer: " + LayerMask.LayerToName(currentHex.gameObject.layer));
             Debug.Log("Tile to delete: " + currentHex.transform.position);
         }
     }

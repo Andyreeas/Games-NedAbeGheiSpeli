@@ -18,23 +18,20 @@ public class NetworkPlayerMovement : NetworkBehaviour
 
     private void Awake()
     {
-        keyboardMouseInput = FindObjectOfType<KeyboardMouseInput>();
+        keyboardMouseInput = GetComponentInChildren<KeyboardMouseInput>();
     }
 
     private void OnEnable()
     {
-        if (IsLocalPlayer)
-        {
-            keyboardMouseInput.OnKeyboardInputSpace += Jump;
-        }
+        keyboardMouseInput.OnKeyboardInputSpace += Jump;
+
     }
 
     private void OnDisable()
     {
-        if (IsLocalPlayer)
-        {
-            keyboardMouseInput.OnKeyboardInputSpace -= Jump;
-        }
+
+        keyboardMouseInput.OnKeyboardInputSpace -= Jump;
+
     }
 
     private void Start()
@@ -74,6 +71,8 @@ public class NetworkPlayerMovement : NetworkBehaviour
 
     void Jump()
     {
+        Debug.Log("jumped");
+
         /*
         //Jump
         if (Physics.Raycast(controller.transform.position, Vector3.down, float controller.))
