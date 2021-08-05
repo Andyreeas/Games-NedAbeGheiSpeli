@@ -2,27 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using MLAPI;
 
-public class Main : MonoBehaviour {
+public class Main : NetworkBehaviour
+{
 
     public MapHandler mapHandlerObject;
+    public bool partieIsRunning;
     MapHandler mapHandler;
 
-    private void Awake() {
+    private void Awake()
+    {
         mapHandler = Instantiate(mapHandlerObject) as MapHandler;
     }
 
-    void Start() {
+    void Start()
+    {
+        Debug.Log("newGame!");
+        partieIsRunning = true;
         NewGame();
-        
-    }
-
-
-    void Update() {
 
     }
 
-    public void NewGame() {
+
+    void Update()
+    {
+        // if ((IsServer || IsHost) && !partieIsRunning)
+        // {
+
+        // }
+    }
+
+    public void NewGame()
+    {
         mapHandler.CreateMap();
     }
 
