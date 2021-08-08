@@ -9,13 +9,17 @@ public class TileSelector : MonoBehaviour
     Camera mainCamera;
 
     private KeyboardMouseInput keyboardInput;
-    
+    private NetworkMap networkMap;
+    CrossFeed CF;
+
     //Debug var
     string tileInfo;
 
     private void Awake()
     {
-        keyboardInput = FindObjectOfType<KeyboardMouseInput>();
+        keyboardInput = GetComponentInChildren<KeyboardMouseInput>();
+        networkMap = FindObjectOfType<NetworkMap>();
+        CF = FindObjectOfType<CrossFeed>();
     }
 
     private void OnEnable()
@@ -30,18 +34,19 @@ public class TileSelector : MonoBehaviour
 
     void TileDelete()
     {
+        StartCoroutine(CF.Fired());
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit rayHitInfo;
-        
+
         if (Physics.Raycast(ray, out rayHitInfo))
         {
             HexTile currentHex = rayHitInfo.collider.GetComponent<HexTile>();
             if (!(currentHex.gameObject.layer == LayerMask.NameToLayer("Wall")))
             {
-                currentHex.LooseLife();
+                networkMap.RequestLooseLifeServerRpc(currentHex.r, currentHex.q);
             }
-            Debug.Log("Tile layer: "+ LayerMask.LayerToName(currentHex.gameObject.layer));
-            Debug.Log("Tile to delete: " + currentHex.transform.position);
+            //Debug.Log("Tile layer: " + LayerMask.LayerToName(currentHex.gameObject.layer));
+            //Debug.Log("Tile to delete: " + currentHex.transform.position);
         }
     }
 }

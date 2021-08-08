@@ -1,20 +1,25 @@
 using System;
 using UnityEngine;
+using MLAPI;
 
-public class KeyboardMouseInput : MonoBehaviour
+public class KeyboardMouseInput : NetworkBehaviour
 {
     public event Action OnMouseInputLeftDown = delegate { };
     public event Action OnKeyboardInputSpace = delegate { };
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (IsLocalPlayer)
+        // wichtig, so werden nicht alle instanzen von allen playern aufgerufen
         {
-            OnMouseInputLeftDown();
-        }
-        if (Input.GetKeyDown("space"))
-        {
-            OnKeyboardInputSpace();
+            if (Input.GetMouseButtonDown(0))
+            {
+                OnMouseInputLeftDown();
+            }
+            if (Input.GetKeyDown("space"))
+            {
+                OnKeyboardInputSpace();
+            }
         }
     }
 }

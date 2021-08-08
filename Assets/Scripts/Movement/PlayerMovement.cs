@@ -22,17 +22,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        keyboardMouseInput = FindObjectOfType<KeyboardMouseInput>();
+        keyboardMouseInput = GetComponentInChildren<KeyboardMouseInput>();
     }
 
     private void OnEnable()
     {
-        keyboardMouseInput.OnKeyboardInputSpace += Jump;    
+        keyboardMouseInput.OnKeyboardInputSpace += Jump;
     }
-    
+
     private void OnDisable()
     {
-        keyboardMouseInput.OnKeyboardInputSpace -= Jump;   
+        keyboardMouseInput.OnKeyboardInputSpace -= Jump;
     }
 
     void Update()
@@ -48,7 +48,8 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        if (controller.isGrounded && velocity.y < 0) {
+        if (controller.isGrounded && velocity.y < 0)
+        {
             velocity.y = -2;
         }
     }
