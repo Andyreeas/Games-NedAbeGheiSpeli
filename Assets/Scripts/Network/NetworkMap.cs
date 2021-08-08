@@ -13,7 +13,7 @@ public class NetworkMap : NetworkBehaviour
         map = FindObjectOfType<MapHandler>();
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void RequestLooseLifeServerRpc(int r, int q)
     {
         Debug.Log("requestLooseLife");

@@ -11,15 +11,18 @@ public class Main : NetworkBehaviour
     public bool partieIsRunning;
     MapHandler mapHandler;
 
+    public GameObject localPlayerObject;
+
     private void Awake()
     {
         mapHandler = Instantiate(mapHandlerObject) as MapHandler;
+
     }
 
     void Start()
     {
         Debug.Log("newGame!");
-        partieIsRunning = true;
+        partieIsRunning = false;
         NewGame();
 
     }
@@ -27,10 +30,12 @@ public class Main : NetworkBehaviour
 
     void Update()
     {
-        // if ((IsServer || IsHost) && !partieIsRunning)
-        // {
-
-        // }
+        if ((IsServer || IsHost || IsClient) && !partieIsRunning)
+        {
+            partieIsRunning = true;
+            Debug.Log("NetworkID: " + NetworkManager.Singleton.LocalClientId);
+            localPlayerObject = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.gameObject;
+        }
     }
 
     public void NewGame()

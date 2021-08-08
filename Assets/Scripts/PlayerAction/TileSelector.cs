@@ -10,6 +10,7 @@ public class TileSelector : MonoBehaviour
 
     private KeyboardMouseInput keyboardInput;
     private NetworkMap networkMap;
+    CrossFeed CF;
 
     //Debug var
     string tileInfo;
@@ -18,6 +19,7 @@ public class TileSelector : MonoBehaviour
     {
         keyboardInput = GetComponentInChildren<KeyboardMouseInput>();
         networkMap = FindObjectOfType<NetworkMap>();
+        CF = FindObjectOfType<CrossFeed>();
     }
 
     private void OnEnable()
@@ -32,6 +34,7 @@ public class TileSelector : MonoBehaviour
 
     void TileDelete()
     {
+        StartCoroutine(CF.Fired());
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit rayHitInfo;
 
