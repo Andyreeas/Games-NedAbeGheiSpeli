@@ -1,7 +1,7 @@
 # NedAbeGheiSpeli
 Kinda like Spleef...
 
-# ToDo / Ideen
+# ToDo:
 - ~~jumping~~
 - ~~click range?~~
 - win / loose counter
