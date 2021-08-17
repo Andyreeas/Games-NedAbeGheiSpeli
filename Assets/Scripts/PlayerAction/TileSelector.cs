@@ -8,6 +8,9 @@ public class TileSelector : MonoBehaviour
     [SerializeField]
     Camera mainCamera;
 
+    [SerializeField]
+    float maxTileRange = 10f;
+
     private KeyboardMouseInput keyboardInput;
     private NetworkMap networkMap;
     CrossFeed CF;
@@ -38,8 +41,8 @@ public class TileSelector : MonoBehaviour
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit rayHitInfo;
         
-        //Max length set to 10 float
-        if (Physics.Raycast(ray, out rayHitInfo, 10f))
+        //Max length set to maxTileRange float
+        if (Physics.Raycast(ray, out rayHitInfo, maxTileRange))
         {
             HexTile currentHex = rayHitInfo.collider.GetComponent<HexTile>();
             if (!(currentHex.gameObject.layer == LayerMask.NameToLayer("Wall")))
