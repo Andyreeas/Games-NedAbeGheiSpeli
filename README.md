@@ -2,7 +2,7 @@
 Kinda like Spleef...
 
 # ToDo / Ideen
-- jumping
+- jumping     DONE
 - click range?
 - win / loose counter
 - rematch after all Clients-1 are dead
