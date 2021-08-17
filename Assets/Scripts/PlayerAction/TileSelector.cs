@@ -37,8 +37,9 @@ public class TileSelector : MonoBehaviour
         StartCoroutine(CF.Fired());
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit rayHitInfo;
-
-        if (Physics.Raycast(ray, out rayHitInfo))
+        
+        //Max length set to 10 float
+        if (Physics.Raycast(ray, out rayHitInfo, 10f))
         {
             HexTile currentHex = rayHitInfo.collider.GetComponent<HexTile>();
             if (!(currentHex.gameObject.layer == LayerMask.NameToLayer("Wall")))
