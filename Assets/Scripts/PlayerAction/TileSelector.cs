@@ -44,13 +44,16 @@ public class TileSelector : MonoBehaviour
         //Max length set to maxTileRange float
         if (Physics.Raycast(ray, out rayHitInfo, maxTileRange))
         {
-            HexTile currentHex = rayHitInfo.collider.GetComponent<HexTile>();
-            if (!(currentHex.gameObject.layer == LayerMask.NameToLayer("Wall")))
+            try{
+                HexTile currentHex = rayHitInfo.collider.GetComponent<HexTile>();
+                if (!(currentHex.gameObject.layer == LayerMask.NameToLayer("Wall")))
+                {
+                    networkMap.RequestLooseLifeServerRpc(currentHex.r, currentHex.q);
+                }
+            } catch (NullReferenceException e)
             {
-                networkMap.RequestLooseLifeServerRpc(currentHex.r, currentHex.q);
-            }
-            //Debug.Log("Tile layer: " + LayerMask.LayerToName(currentHex.gameObject.layer));
-            //Debug.Log("Tile to delete: " + currentHex.transform.position);
+                Debug.Log(e);
+            }   
         }
     }
 }
