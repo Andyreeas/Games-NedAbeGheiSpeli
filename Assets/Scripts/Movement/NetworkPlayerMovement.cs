@@ -68,18 +68,11 @@ public class NetworkPlayerMovement : NetworkBehaviour
         }
     }
 
-
     void Jump()
     {
-        Debug.Log("jumped");
-
-        /*
-        //Jump
-        if (Physics.Raycast(controller.transform.position, Vector3.down, float controller.))
+        if (controller.isGrounded)
         {
-            velocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
+            velocity.y = jumpHeight;
         }
-        */
     }
-
 }
