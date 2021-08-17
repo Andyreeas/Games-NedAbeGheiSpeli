@@ -11,4 +11,7 @@ Kinda like Spleef...
 - physics serverside / Character controller?
 - player model
 - settings for map (size)
+- optimizing jump
+   > no / less movement in air
+- whatabout smartphone game?
 - 
