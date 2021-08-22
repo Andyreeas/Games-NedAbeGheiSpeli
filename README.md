@@ -13,5 +13,5 @@ Kinda like Spleef...
 - settings for map (size)
 - optimizing jump
    > no / less movement in air
-- whatabout smartphone game?
+- player movement in FixtUpdate?
 - 
