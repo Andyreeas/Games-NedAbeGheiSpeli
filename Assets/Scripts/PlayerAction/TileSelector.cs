@@ -32,28 +32,37 @@ public class TileSelector : MonoBehaviour
 
     private void OnDisable()
     {
-        keyboardInput.OnMouseInputLeftDown += TileDelete;
+        keyboardInput.OnMouseInputLeftDown -= TileDelete;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("In Tile Selector");
+
+    }
+
 
     void TileDelete()
     {
         StartCoroutine(CF.Fired());
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit rayHitInfo;
-        
+
         //Max length set to maxTileRange float
         if (Physics.Raycast(ray, out rayHitInfo, maxTileRange))
         {
-            try{
+            try
+            {
                 HexTile currentHex = rayHitInfo.collider.GetComponent<HexTile>();
                 if (!(currentHex.gameObject.layer == LayerMask.NameToLayer("Wall")))
                 {
                     networkMap.RequestLooseLifeServerRpc(currentHex.r, currentHex.q);
                 }
-            } catch (NullReferenceException e)
+            }
+            catch (NullReferenceException e)
             {
                 Debug.Log(e);
-            }   
+            }
         }
     }
 }

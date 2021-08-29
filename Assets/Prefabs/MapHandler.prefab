@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4666926582349000443}
   - component: {fileID: 6633142527636015751}
+  - component: {fileID: 141039233207548295}
   m_Layer: 0
   m_Name: MapHandler
   m_TagString: Untagged
@@ -46,3 +47,17 @@ MonoBehaviour:
   hexTile: {fileID: 5487954080212454960, guid: 0f9303af226e3dd4fb31805a485abcb8, type: 3}
   mapSize: 15
   allTiles: []
+  allWalls: []
+--- !u!114 &141039233207548295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903159079754199037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3437fc8398c3454c9aa3959c3a8afd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HexSpawnPoints: 00000000000000000000000000000000

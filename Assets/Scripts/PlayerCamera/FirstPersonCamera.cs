@@ -9,14 +9,14 @@ public class FirstPersonCamera : MonoBehaviour
 
     [SerializeField]
     private Vector2 mouseSensitivity = new Vector2(50, 50);
-    
+
     float yRotation = 0;
-    
+
     void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
-    
+
     void Update()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity.x * Time.deltaTime;

@@ -33,6 +33,6 @@ public class DebugLogInGame : MonoBehaviour
         if (!doShow) { return; }
         GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity,
            new Vector3(1f, 1f, 1.0f));
-        GUI.TextArea(new Rect(10, (Screen.height / 5) * 4, Screen.width / 2, Screen.height / 4), myLog);
+        GUI.TextArea(new Rect(Screen.width / 2, (Screen.height / 5) * 4, Screen.width / 2, Screen.height / 4), myLog);
     }
 }
